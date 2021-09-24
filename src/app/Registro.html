@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+    <div>
+        <form:form action="/registro/crear" method="post" modelAttribute="registro">
+            <form:label path="rut">rut:</form:label>
+            <form:input type="text" path="rut" /><br>
+
+            <form:label path="nombre">nombre:</form:label>
+            <form:input type="text" path="nombre" /><br>
+
+            <form:label path="apellido">apellido:</form:label>
+            <form:input type="text" path="apellido" /><br>
+
+            <form:label path="edad">edad:</form:label>
+            <form:input type="text" path="edad" /><br>
+
+            <form:label path="email">email:</form:label>
+            <form:input type="text" path="email" /><br>
+
+            <form:label path="password">password:</form:label>
+            <form:input type="text" path="password" /><br>
+            <br>
+
+            <br>
+
+            <input type="submit" value="crear registro">
+        </form:form>
+        <br>
+        <hr>
+        <h1>Lista de registros</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>email</th>
+                    <th>Password</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="registro" items="${lista_registros}">
+                    <tr>
+                        <td>
+                            <c:out value="${registro.id}" /> </td>
+                        <td>
+                            <c:out value="${registro.rut}" /> </td>
+                        <td>
+                            <c:out value="${registro.nombre}" /> </td>
+
+                        <td>
+                            <c:out value="${registro.apellido}" /> </td>
+                        <td>
+                            <c:out value="${registro.edad}" /> </td>
+                        <td>
+                            <c:out value="${registro.email}" /> </td>
+                        <td>
+                            <c:out value="${password.cargo}" /> </td>
+
+
+
+                        <td>
+                            <a href="/registro/actualizar/${registro.id}">EDITAR</a>
+
+
+
+                            <form action="/registro/eliminar2/${registro.id}" method="POST">
+                                <input type="hidden" name="_method" value="delete">
+                                <input type="submit" value="Eliminar">
+                            </form>
+
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
